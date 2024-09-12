@@ -22,15 +22,8 @@ body {
 h2 {
     text-align: center;
     color: #4A4A4A;
-    margin-bottom: 10px;
-    font-size: 24px;
-}
-
-.subheading {
-    text-align: center;
-    color: #777;
     margin-bottom: 30px;
-    font-size: 16px;
+    font-size: 24px;
 }
 
 /* Input fields and login button */
@@ -59,9 +52,21 @@ h2 {
     color: #4A4A4A;
 }
 
-.login-button, .social-login {
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.login-button {
     width: 100%;
     padding: 12px;
+    background-color: #A2C7BE;
+    color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -69,19 +74,28 @@ h2 {
     transition: background-color 0.3s;
 }
 
-.login-button {
-    background-color: #A2C7BE;
-    color: white;
-    margin-top: 10px;
-}
-
 .login-button:hover {
     background-color: #8fb3a9;
 }
 
-.login-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+/* Separator */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.separator hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.separator span {
+    padding: 0 10px;
+    color: #777;
+    font-size: 14px;
 }
 
 /* Social login buttons */
@@ -89,7 +103,7 @@ h2 {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .social-login {
@@ -101,6 +115,8 @@ h2 {
     align-items: center;
     font-size: 18px;
     color: white;
+    border: none;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
@@ -116,43 +132,35 @@ h2 {
     background-color: #db4a39;
 }
 
-/* Terms and Conditions */
-.terms-container {
-    margin-bottom: 20px;
+/* Additional links */
+.additional-links {
+    text-align: center;
 }
 
-.terms-container h3 {
-    color: #4A4A4A;
+.forgot-password {
+    color: #A2C7BE;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
     margin-bottom: 10px;
 }
 
-.terms-iframe {
-    width: 100%;
-    height: 200px;
-    border: 1px solid #A2C7BE;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.terms-content {
-    height: 100%;
-    overflow-y: scroll;
-    padding: 10px;
-    font-size: 14px;
+.signup-link {
     color: #4A4A4A;
+    font-size: 14px;
 }
 
-.checkbox-group {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+.signup-link a {
+    color: #A2C7BE;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.checkbox-group input[type="checkbox"] {
-    margin-right: 10px;
+.signup-link a:hover {
+    text-decoration: underline;
 }
 
-/* Additional styles */
+/* Flash messages */
 .flash-messages {
     list-style-type: none;
     padding: 0;
@@ -176,19 +184,5 @@ h2 {
     text-align: center;
 }
 
-.signup-link {
-    text-align: center;
-    margin-top: 20px;
-    color: #4A4A4A;
-    font-size: 14px;
-}
-
-.signup-link a {
-    color: #A2C7BE;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
-}
+/* Existing styles for sign-up page */
+/* ... (keep the existing styles for the sign-up page) ... */
