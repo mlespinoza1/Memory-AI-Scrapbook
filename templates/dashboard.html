@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Memory AI Scrapbook</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1>My Memory Nest</h1>
+            <nav>
+                <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+            </nav>
+        </header>
+        <main>
+            <section class="memory-grid" id="memoryGrid">
+                <!-- Memory cards will be dynamically added here -->
+            </section>
+        </main>
+        <nav class="bottom-toolbar">
+            <a href="#" class="toolbar-icon"><i class="fas fa-home"></i></a>
+            <a href="#" class="toolbar-icon"><i class="fas fa-plus"></i></a>
+            <a href="#" class="toolbar-icon"><i class="fas fa-cog"></i></a>
+        </nav>
+    </div>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
