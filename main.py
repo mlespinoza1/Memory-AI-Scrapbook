@@ -52,5 +52,19 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+@app.route("/signup", methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if username in users:
+            flash('Username already exists')
+        else:
+            new_user = User(str(len(users) + 1), username, generate_password_hash(password))
+            users[username] = new_user
+            flash('Account created successfully. Please log in.')
+            return redirect(url_for('login'))
+    return render_template('signup.html')
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

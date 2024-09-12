@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory App - Create an Account</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ===== CSS STYLES START ===== */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F0EFE9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #4A4A4A;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 40px 10px 40px;
+            border: 1px solid #A2C7BE;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 15px;
+            color: #A2C7BE;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .terms-container {
+            margin-bottom: 20px;
+        }
+
+        .terms-container h3 {
+            color: #4A4A4A;
+            margin-bottom: 10px;
+        }
+
+        .terms-scroll {
+            height: 100px;
+            overflow-y: scroll;
+            border: 1px solid #A2C7BE;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #4A4A4A;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #A2C7BE;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #A2C7BE;
+            text-decoration: none;
+        }
+        /* ===== CSS STYLES END ===== */
+    </style>
+</head>
+<body>
+    <!-- ===== HTML CONTENT START ===== -->
+    <div class="container">
+        <h1>Create Your Memory Nest</h1>
+        <form id="signupForm">
+            <div class="input-group">
+                <i data-lucide="user"></i>
+                <input type="text" id="firstName" placeholder="First Name" required>
+            </div>
+            <div class="input-group">
+                <i data-lucide="at-sign"></i>
+                <input type="email" id="email" placeholder="Email address" required>
+            </div>
+            <div class="input-group">
+                <i data-lucide="lock-keyhole"></i>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="button" id="togglePassword" class="toggle-password">
+                    <i data-lucide="eye-off"></i>
+                </button>
+            </div>
+            <div class="terms-container">
+                <h3>Terms and Conditions</h3>
+                <div class="terms-scroll" id="termsScroll">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc id aliquam tincidunt, nisl nunc tincidunt nunc, vitae aliquam nunc nunc vitae nunc. Sed vitae nunc vitae nunc tincidunt tincidunt. Sed vitae nunc vitae nunc tincidunt tincidunt.</p>
+                    <p>Nullam auctor, nunc id aliquam tincidunt, nisl nunc tincidunt nunc, vitae aliquam nunc nunc vitae nunc. Sed vitae nunc vitae nunc tincidunt tincidunt. Sed vitae nunc vitae nunc tincidunt tincidunt.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc id aliquam tincidunt, nisl nunc tincidunt nunc, vitae aliquam nunc nunc vitae nunc. Sed vitae nunc vitae nunc tincidunt tincidunt. Sed vitae nunc vitae nunc tincidunt tincidunt.</p>
+                </div>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="acceptTerms" disabled>
+                <label for="acceptTerms">I have read and accept the terms and conditions</label>
+            </div>
+            <button type="submit" class="submit-btn" id="createNestBtn" disabled>Create Nest</button>
+        </form>
+        <p class="login-link">Already have an account? <a href="#">Log in</a></p>
+    </div>
+    <!-- ===== HTML CONTENT END ===== -->
+
+    <script>
+        // ===== JAVASCRIPT CODE START =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons
+            lucide.createIcons();
+
+            const form = document.getElementById('signupForm');
+            const firstNameInput = document.getElementById('firstName');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const togglePasswordBtn = document.getElementById('togglePassword');
+            const togglePasswordIcon = togglePasswordBtn.querySelector('i');
+            const termsScroll = document.getElementById('termsScroll');
+            const acceptTermsCheckbox = document.getElementById('acceptTerms');
+            const createNestBtn = document.getElementById('createNestBtn');
+
+            // Toggle password visibility
+            togglePasswordBtn.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    togglePasswordIcon.setAttribute('data-lucide', 'eye');
+                } else {
+                    passwordInput.type = 'password';
+                    togglePasswordIcon.setAttribute('data-lucide', 'eye-off');
+                }
+                lucide.createIcons();
+            });
+
+            // Enable "Accept Terms" checkbox when scrolled to bottom
+            termsScroll.addEventListener('scroll', function() {
+                if (termsScroll.scrollHeight - termsScroll.scrollTop === termsScroll.clientHeight) {
+                    acceptTermsCheckbox.disabled = false;
+                }
+            });
+
+            // Enable/disable "Create Nest" button based on checkbox
+            acceptTermsCheckbox.addEventListener('change', function() {
+                createNestBtn.disabled = !this.checked;
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const firstName = firstNameInput.value;
+                const email = emailInput.value;
+                const password = passwordInput.value;
+
+                console.log('Account creation attempt:', { firstName, email, password });
+                // Here you would typically send a request to your server to create the account
+                alert('Account creation functionality will be implemented in the future.');
+            });
+
+            // Login link
+            document.querySelector('.login-link a').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Login page will be implemented in the future.');
+            });
+        });
+        // ===== JAVASCRIPT CODE END =====
+    </script>
+</body>
+</html>
