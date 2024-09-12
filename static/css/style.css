@@ -22,8 +22,15 @@ body {
 h2 {
     text-align: center;
     color: #4A4A4A;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-size: 24px;
+}
+
+.subheading {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+    font-size: 16px;
 }
 
 /* Input fields and login button */
@@ -72,72 +79,45 @@ h2 {
     background-color: #8fb3a9;
 }
 
-/* Remember me checkbox */
-.remember-me {
-    display: flex;
-    align-items: center;
+.login-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Terms and Conditions */
+.terms-container {
     margin-bottom: 20px;
 }
 
-.remember-me input[type="checkbox"] {
-    margin-right: 10px;
+.terms-container h3 {
+    color: #4A4A4A;
+    margin-bottom: 10px;
 }
 
-.remember-me label {
+.terms-iframe {
+    width: 100%;
+    height: 200px;
+    border: 1px solid #A2C7BE;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.terms-content {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 10px;
     font-size: 14px;
     color: #4A4A4A;
 }
 
-/* Social login buttons */
-.social-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.social-login {
-    flex: 1;
+.checkbox-group {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    margin-top: 10px;
 }
 
-.social-login i {
-    margin: 0;
-}
-
-.apple-login {
-    background-color: #000;
-    color: #fff;
-}
-
-.apple-login:hover {
-    background-color: #333;
-}
-
-.google-login {
-    background-color: #fff;
-    color: #757575;
-}
-
-.google-login:hover {
-    background-color: #f1f1f1;
-}
-
-.facebook-login {
-    background-color: #3b5998;
-    color: #fff;
-}
-
-.facebook-login:hover {
-    background-color: #344e86;
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
 }
 
 /* Additional styles */
@@ -153,35 +133,6 @@ h2 {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
-}
-
-.separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 25px 0;
-}
-
-.separator::before,
-.separator::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid #ccc;
-}
-
-.separator span {
-    padding: 0 10px;
-    color: #4A4A4A;
-    font-size: 14px;
-}
-
-.forgot-password {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #4A4A4A;
-    text-decoration: none;
-    font-size: 14px;
 }
 
 .signup-link {

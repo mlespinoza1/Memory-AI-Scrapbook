@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #F0EFE9;
+        }
+        .terms-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .terms-container h3 {
+            color: #4A4A4A;
+            margin-bottom: 10px;
+        }
+        .terms-iframe {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #A2C7BE;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .terms-content {
+            height: 100%;
+            overflow-y: scroll;
+            padding: 10px;
+            font-size: 14px;
+            color: #4A4A4A;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #createNestBtn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #A2C7BE;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #createNestBtn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="terms-container">
+        <h3>Terms and Conditions</h3>
+        <div class="terms-iframe">
+            <div class="terms-content" id="termsContent">
+                <h4>1. Acceptance of Terms</h4>
+                <p>By accessing and using the Memory App, you agree to be bound by these Terms and Conditions.</p>
+                
+                <h4>2. User Accounts</h4>
+                <p>You are responsible for maintaining the confidentiality of your account and password.</p>
+                
+                <h4>3. Privacy Policy</h4>
+                <p>Your use of the Memory App is also governed by our Privacy Policy.</p>
+                
+                <h4>4. Content</h4>
+                <p>You retain all rights to the content you upload to the Memory App.</p>
+                
+                <h4>5. Prohibited Activities</h4>
+                <p>You agree not to engage in any illegal or unauthorized use of the Memory App.</p>
+                
+                <h4>6. Termination</h4>
+                <p>We reserve the right to terminate or suspend your account at our sole discretion.</p>
+                
+                <h4>7. Changes to Terms</h4>
+                <p>We reserve the right to modify these Terms at any time.</p>
+                
+                <h4>8. Contact Information</h4>
+                <p>For any questions about these Terms, please contact us at support@memoryapp.com.</p>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="acceptTerms" disabled>
+            <label for="acceptTerms">I have read and accept the terms and conditions</label>
+        </div>
+        <button id="createNestBtn" disabled>Create Nest</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const termsContent = document.getElementById('termsContent');
+            const acceptTermsCheckbox = document.getElementById('acceptTerms');
+            const createNestBtn = document.getElementById('createNestBtn');
+
+            termsContent.addEventListener('scroll', function() {
+                if (termsContent.scrollHeight - termsContent.scrollTop === termsContent.clientHeight) {
+                    acceptTermsCheckbox.disabled = false;
+                }
+            });
+
+            acceptTermsCheckbox.addEventListener('change', function() {
+                createNestBtn.disabled = !this.checked;
+            });
+
+            createNestBtn.addEventListener('click', function() {
+                alert('Account creation functionality will be implemented in the future.');
+            });
+        });
+    </script>
+</body>
+</html>
