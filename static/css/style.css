@@ -21,6 +21,35 @@ header h1 {
     margin: 0;
 }
 
+.search-container {
+    position: relative;
+    width: 40%;
+    margin: 0 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 40px 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    background-color: white;
+    color: #4A4A4A;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #A2C7BE;
+    cursor: pointer;
+}
+
 .logout-button {
     background-color: #E8D0C3;
     color: #4A4A4A;
