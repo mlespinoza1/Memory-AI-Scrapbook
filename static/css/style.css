@@ -1,5 +1,4 @@
-/* ... (existing styles) ... */
-
+/* General styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #F0EFE9;
@@ -10,13 +9,15 @@ body {
     margin: 0;
 }
 
+/* Login container */
 .login-container {
     max-width: 400px;
     width: 90%;
-    padding: 40px;
+    margin: 50px auto;
+    padding: 20px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -25,10 +26,15 @@ h2 {
     margin-bottom: 30px;
 }
 
-.login-form input {
-    width: 100%;
-    padding: 12px;
+/* Input fields and login button */
+.input-group {
+    position: relative;
     margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
@@ -36,20 +42,71 @@ h2 {
 
 .login-button {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     background-color: #A2C7BE;
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 16px;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .login-button:hover {
-    background-color: #8AB3A8;
+    background-color: #8fb3a9;
 }
 
+/* Remember me checkbox */
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.remember-me label {
+    font-size: 14px;
+    color: #4A4A4A;
+}
+
+/* Social login buttons */
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.social-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.social-login i {
+    margin-right: 10px;
+}
+
+.google-login {
+    background-color: #fff;
+    color: #757575;
+}
+
+.facebook-login {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+/* Additional styles */
 .flash-messages {
     list-style-type: none;
     padding: 0;
@@ -62,31 +119,6 @@ h2 {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
-}
-
-.input-group {
-    position: relative;
-    margin-bottom: 15px;
-}
-
-.toggle-password {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.remember-me {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.remember-me input {
-    margin-right: 5px;
 }
 
 .separator {
@@ -106,46 +138,6 @@ h2 {
 .separator span {
     padding: 0 10px;
     color: #4A4A4A;
-}
-
-.social-buttons {
-    margin-top: 20px;
-}
-
-.social-login {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.social-login i {
-    margin-right: 10px;
-}
-
-.google-login {
-    background-color: #DB4437;
-    color: white;
-}
-
-.google-login:hover {
-    background-color: #C53929;
-}
-
-.facebook-login {
-    background-color: #4267B2;
-    color: white;
-}
-
-.facebook-login:hover {
-    background-color: #365899;
 }
 
 .forgot-password {
