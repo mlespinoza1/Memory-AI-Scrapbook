@@ -1,30 +1,53 @@
 /* ... (existing styles) ... */
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0EFE9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
 .login-container {
-    max-width: 300px;
-    margin: 50px auto;
-    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    padding: 40px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.login-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+h2 {
+    text-align: center;
+    color: #4A4A4A;
+    margin-bottom: 30px;
 }
 
-.login-form button {
+.login-form input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
     background-color: #A2C7BE;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #8AB3A8;
 }
 
 .flash-messages {
@@ -66,13 +89,32 @@
     margin-right: 5px;
 }
 
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
+
+.separator span {
+    padding: 0 10px;
+    color: #4A4A4A;
+}
+
 .social-buttons {
     margin-top: 20px;
 }
 
-.social-buttons button {
+.social-login {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 10px;
     border: none;
     border-radius: 5px;
@@ -80,9 +122,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-.social-buttons button i {
+.social-login i {
     margin-right: 10px;
 }
 
@@ -91,15 +135,23 @@
     color: white;
 }
 
+.google-login:hover {
+    background-color: #C53929;
+}
+
 .facebook-login {
     background-color: #4267B2;
     color: white;
 }
 
+.facebook-login:hover {
+    background-color: #365899;
+}
+
 .forgot-password {
     display: block;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
     color: #4A4A4A;
     text-decoration: none;
 }
@@ -107,9 +159,15 @@
 .signup-link {
     text-align: center;
     margin-top: 20px;
+    color: #4A4A4A;
 }
 
 .signup-link a {
     color: #A2C7BE;
     text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
 }

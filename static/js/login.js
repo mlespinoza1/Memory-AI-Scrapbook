@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Lucide icons
-    lucide.createIcons();
-
     const form = document.getElementById('loginForm');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
@@ -12,12 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
     togglePasswordBtn.addEventListener('click', function() {
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
-            togglePasswordIcon.setAttribute('data-lucide', 'eye');
+            togglePasswordIcon.classList.remove('fa-eye-slash');
+            togglePasswordIcon.classList.add('fa-eye');
         } else {
             passwordInput.type = 'password';
-            togglePasswordIcon.setAttribute('data-lucide', 'eye-off');
+            togglePasswordIcon.classList.remove('fa-eye');
+            togglePasswordIcon.classList.add('fa-eye-slash');
         }
-        lucide.createIcons();
     });
 
     // Form submission
@@ -33,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Social login buttons (for demonstration)
     document.querySelectorAll('.social-buttons button').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
             alert('Social login will be implemented in the future.');
         });
     });
