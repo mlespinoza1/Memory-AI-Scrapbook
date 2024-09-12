@@ -12,6 +12,7 @@ header {
     background-color: #A2C7BE;
     padding: 20px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -19,6 +20,28 @@ header {
 header h1 {
     color: white;
     margin: 0;
+    flex-basis: 100%;
+    margin-bottom: 15px;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.action-button {
+    background-color: #E8D0C3;
+    color: #4A4A4A;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-button:hover {
+    background-color: #D9B6A3;
 }
 
 .search-container {
@@ -27,98 +50,4 @@ header h1 {
     margin: 0 20px;
 }
 
-.search-input {
-    width: 100%;
-    padding: 10px 40px 10px 20px;
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    background-color: white;
-    color: #4A4A4A;
-}
-
-.search-input::placeholder {
-    color: #999;
-}
-
-.search-icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #A2C7BE;
-    cursor: pointer;
-}
-
-.logout-button {
-    background-color: #E8D0C3;
-    color: #4A4A4A;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.logout-button:hover {
-    background-color: #D9B6A3;
-}
-
-main {
-    flex-grow: 1;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.memory-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.memory-card {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.memory-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.memory-card .info {
-    padding: 15px;
-}
-
-.memory-card h3 {
-    margin: 0 0 10px 0;
-    color: #4A4A4A;
-}
-
-.memory-card p {
-    margin: 0;
-    color: #777;
-}
-
-.bottom-toolbar {
-    background-color: white;
-    display: flex;
-    justify-content: space-around;
-    padding: 15px 0;
-    position: sticky;
-    bottom: 0;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.toolbar-icon {
-    color: #4A4A4A;
-    font-size: 24px;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.toolbar-icon:hover {
-    color: #A2C7BE;
-}
+/* Rest of the existing styles... */

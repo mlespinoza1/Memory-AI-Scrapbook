@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const memoryGrid = document.getElementById('memoryGrid');
+    const createMemoryBtn = document.getElementById('createMemory');
+    const createBookBtn = document.getElementById('createBook');
 
     // Sample data for memory cards (replace with actual data from the server)
     const memories = [
@@ -30,6 +32,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     renderMemories();
+
+    // Add event listeners for new buttons
+    createMemoryBtn.addEventListener('click', function() {
+        console.log('Create a memory button clicked');
+        // Implement functionality to create a new memory
+    });
+
+    createBookBtn.addEventListener('click', function() {
+        console.log('Create a book button clicked');
+        // Implement functionality to create a new book
+    });
 
     // Add event listeners for toolbar icons
     document.querySelectorAll('.toolbar-icon').forEach(icon => {
