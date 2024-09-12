@@ -91,26 +91,35 @@ h2 {
 /* Social login buttons */
 .social-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    justify-content: space-between;
+    gap: 10px;
     margin-top: 20px;
 }
 
 .social-login {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .social-login i {
-    margin-right: 10px;
-    font-size: 18px;
+    margin: 0;
+}
+
+.apple-login {
+    background-color: #000;
+    color: #fff;
+}
+
+.apple-login:hover {
+    background-color: #333;
 }
 
 .google-login {
