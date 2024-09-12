@@ -13,32 +13,32 @@ body {
 .login-container {
     max-width: 400px;
     width: 90%;
-    margin: 50px auto;
-    padding: 30px;
+    padding: 40px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
     text-align: center;
     color: #4A4A4A;
     margin-bottom: 30px;
+    font-size: 24px;
 }
 
 /* Input fields and login button */
 .input-group {
     position: relative;
     margin-bottom: 20px;
-    width: 100%;
 }
 
 .input-group input {
-    width: calc(100% - 40px); /* Adjust the width to account for padding and border */
+    width: 100%;
     padding: 12px 40px 12px 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 .toggle-password {
@@ -53,7 +53,7 @@ h2 {
 }
 
 .login-button, .social-login {
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 12px;
     border: none;
     border-radius: 5px;
@@ -65,6 +65,7 @@ h2 {
 .login-button {
     background-color: #A2C7BE;
     color: white;
+    margin-top: 10px;
 }
 
 .login-button:hover {
@@ -91,24 +92,25 @@ h2 {
 .social-buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .social-login {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .social-login i {
     margin-right: 10px;
+    font-size: 18px;
 }
 
 .google-login {
@@ -116,9 +118,17 @@ h2 {
     color: #757575;
 }
 
+.google-login:hover {
+    background-color: #f1f1f1;
+}
+
 .facebook-login {
     background-color: #3b5998;
     color: #fff;
+}
+
+.facebook-login:hover {
+    background-color: #344e86;
 }
 
 /* Additional styles */
@@ -140,7 +150,7 @@ h2 {
     display: flex;
     align-items: center;
     text-align: center;
-    margin: 20px 0;
+    margin: 25px 0;
 }
 
 .separator::before,
@@ -153,6 +163,7 @@ h2 {
 .separator span {
     padding: 0 10px;
     color: #4A4A4A;
+    font-size: 14px;
 }
 
 .forgot-password {
@@ -161,12 +172,14 @@ h2 {
     margin-top: 20px;
     color: #4A4A4A;
     text-decoration: none;
+    font-size: 14px;
 }
 
 .signup-link {
     text-align: center;
     margin-top: 20px;
     color: #4A4A4A;
+    font-size: 14px;
 }
 
 .signup-link a {
