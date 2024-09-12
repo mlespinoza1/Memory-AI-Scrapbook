@@ -1,0 +1,13 @@
+/* Header styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #A2C7BE;
+}
+
+header h1 {
+    color: white;
+    margin: 0;
+}

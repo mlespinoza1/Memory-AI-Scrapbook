@@ -1,0 +1,74 @@
+/* Login page specific styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.social-login {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.apple-login {
+    background-color: #000000;
+    color: white;
+}
+
+.facebook-login {
+    background-color: #3b5998;
+    color: white;
+}
+
+.google-login {
+    background-color: #db4a39;
+    color: white;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.separator hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.separator span {
+    padding: 0 10px;
+    color: #888;
+}
+
+.additional-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.forgot-password {
+    display: block;
+    margin-bottom: 10px;
+}

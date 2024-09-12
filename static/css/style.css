@@ -1,61 +1,18 @@
-/* ... (existing styles) ... */
+/* Import base styles */
+@import 'base.css';
 
-/* Login form specific styles */
-.login-container {
-    max-width: 400px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+/* Import component styles */
+@import 'components/buttons.css';
+@import 'components/forms.css';
+@import 'components/cards.css';
 
-.login-container h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
-    text-align: center;
-}
+/* Import layout styles */
+@import 'layouts/header.css';
+@import 'layouts/footer.css';
 
-.login-container .subheading {
-    font-size: 16px;
-    color: #888;
-    margin-bottom: 20px;
-    text-align: center;
-}
+/* Import page-specific styles */
+@import 'pages/login.css';
+@import 'pages/signup.css';
+@import 'pages/dashboard.css';
 
-.login-container .input-group {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.login-container input[type="email"],
-.login-container input[type="password"] {
-    width: 100%;
-    padding: 12px 40px 12px 15px;
-    font-size: 16px;
-    border: 1px solid #A2C7BE;
-    border-radius: 10px;
-    transition: border-color 0.3s ease;
-    box-sizing: border-box;
-}
-
-.login-container input[type="email"]:focus,
-.login-container input[type="password"]:focus {
-    border-color: #91B6AD;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(162, 199, 190, 0.2);
-}
-
-.login-container .toggle-password {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #A2C7BE;
-}
-
-/* ... (rest of the existing styles) ... */
+/* Any additional custom styles can be added here */

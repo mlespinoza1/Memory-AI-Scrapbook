@@ -1,0 +1,34 @@
+/* Memory card styles */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.memory-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.memory-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.memory-card .info {
+    padding: 10px;
+}
+
+.memory-card h3 {
+    margin: 0;
+    color: #4A4A4A;
+}
+
+.memory-card p {
+    margin: 5px 0 0;
+    font-size: 0.8em;
+    color: #4A4A4A;
+}

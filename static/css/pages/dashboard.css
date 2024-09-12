@@ -1,0 +1,21 @@
+/* Dashboard page specific styles */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    display: flex;
+}
+
+main {
+    margin-bottom: 80px; /* To account for the bottom toolbar */
+}
