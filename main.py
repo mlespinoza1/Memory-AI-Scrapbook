@@ -3,50 +3,45 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key'  # Replace with a real secret key in production
+app.config['SECRET_KEY'] = 'your-secret-key'  # Change this to a random secret key
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-# This is a simple user model. In a real application, you'd use a database.
-class User(UserMixin):
-    def __init__(self, id, username, password):
-        self.id = id
-        self.username = username
-        self.password = password
+# This should be replaced with a database in a real application
+users = {}
 
-# For this example, we'll use a dictionary to store users. In a real app, use a database.
-users = {
-    'user1': User('1', 'user1', generate_password_hash('password1')),
-    'user2': User('2', 'user2', generate_password_hash('password2'))
-}
+class User(UserMixin):
+    def __init__(self, id, first_name, email, password):
+        self.id = id
+        self.first_name = first_name
+        self.email = email
+        self.password = password
 
 @login_manager.user_loader
 def load_user(user_id):
-    for user in users.values():
-        if user.id == user_id:
-            return user
-    return None
+    return users.get(user_id)
 
-@app.route("/")
+@app.route('/')
 @login_required
 def index():
-    return render_template("index.html")
+    return render_template('index.html')
 
-@app.route("/login", methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
+        email = request.form['email']
         password = request.form['password']
-        user = users.get(username)
+        user = next((user for user in users.values() if user.email == email), None)
         if user and check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for('index'))
-        flash('Invalid username or password')
+        else:
+            flash('Invalid email or password')
     return render_template('login.html')
 
-@app.route("/logout")
+@app.route('/logout')
 @login_required
 def logout():
     logout_user()
@@ -55,14 +50,16 @@ def logout():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        username = request.form['username']
+        first_name = request.form['firstName']
+        email = request.form['email']
         password = request.form['password']
-        if username in users:
-            flash('Username already exists')
+        if email in [user.email for user in users.values()]:
+            flash('Email already exists')
         else:
-            new_user = User(str(len(users) + 1), username, generate_password_hash(password))
-            users[username] = new_user
-            flash('Account created successfully. Please log in.')
+            user_id = str(len(users) + 1)
+            new_user = User(user_id, first_name, email, generate_password_hash(password))
+            users[user_id] = new_user
+            flash("Welcome to Memory Nest! Your account has been created. Let's start preserving your memories together.", 'success')
             return redirect(url_for('login'))
     return render_template('signup.html')
 
