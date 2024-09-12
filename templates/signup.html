@@ -19,14 +19,17 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-            <form id="signupForm" class="form" method="POST">
+            <form id="signupForm" class="signup-form" method="POST">
                 <div class="input-group">
+                    <i class="fas fa-user"></i>
                     <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
                 </div>
                 <div class="input-group">
+                    <i class="fas fa-envelope"></i>
                     <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="input-group">
+                    <i class="fas fa-lock"></i>
                     <input type="password" id="password" name="password" placeholder="Password" required>
                     <button type="button" id="togglePassword" class="toggle-password">
                         <i class="fas fa-eye-slash"></i>
@@ -36,6 +39,9 @@
                     <h3>Terms and Conditions</h3>
                     <div class="terms-scroll" id="termsScroll">
                         <!-- Terms and conditions content -->
+                        <p>By using Memory Nest, you agree to our Terms of Service and Privacy Policy. We respect your privacy and are committed to protecting your personal information.</p>
+                        <p>You are responsible for maintaining the confidentiality of your account and password. Please choose a strong password and do not share it with others.</p>
+                        <p>Memory Nest is designed to help you capture and organize your memories. You retain all rights to the content you upload to the platform.</p>
                     </div>
                     <div class="checkbox-group">
                         <input type="checkbox" id="acceptTerms" disabled>
