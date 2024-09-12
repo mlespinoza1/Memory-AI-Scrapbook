@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Sample data for memory cards (replace with actual data from the server)
     const memories = [
-        { title: "Summer Vacation", date: "July 15, 2023", image: "/static/images/placeholder.jpg" },
-        { title: "Family Reunion", date: "August 5, 2023", image: "/static/images/placeholder.jpg" },
-        { title: "Graduation Day", date: "June 10, 2023", image: "/static/images/placeholder.jpg" },
-        { title: "First Day at Work", date: "September 1, 2023", image: "/static/images/placeholder.jpg" }
+        { title: "Summer Vacation", date: "July 15, 2023", image: "https://placehold.co/600x400/A2C7BE/ffffff?text=Summer+Vacation" },
+        { title: "Family Reunion", date: "August 5, 2023", image: "https://placehold.co/600x400/A2C7BE/ffffff?text=Family+Reunion" },
+        { title: "Graduation Day", date: "June 10, 2023", image: "https://placehold.co/600x400/A2C7BE/ffffff?text=Graduation+Day" },
+        { title: "First Day at Work", date: "September 1, 2023", image: "https://placehold.co/600x400/A2C7BE/ffffff?text=First+Day+at+Work" }
     ];
 
     function createMemoryCard(memory) {
