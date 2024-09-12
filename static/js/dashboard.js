@@ -46,12 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Add event listeners for new buttons
         createMemoryBtn.addEventListener('click', function() {
-            console.log('Create a memory button clicked');
+            console.log('Create Memory button clicked');
             // Implement functionality to create a new memory
         });
 
         createBookBtn.addEventListener('click', function() {
-            console.log('Create a book button clicked');
+            console.log('Create Book button clicked');
             // Implement functionality to create a new book
         });
 

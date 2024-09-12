@@ -5,29 +5,66 @@
     border: none;
     padding: 10px 20px;
     border-radius: 20px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
 }
 
 .button:hover {
-    background-color: #91B6AD;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 .action-button {
     margin-right: 10px;
+    padding: 12px 24px;
+    font-size: 16px;
+}
+
+.dashboard-container .action-bar #createMemory {
+    background-color: #E8D0C3;
+    color: #4A4A4A;
+}
+
+.dashboard-container .action-bar #createMemory:hover {
+    background-color: #D9C1B4;
+}
+
+.dashboard-container .action-bar #createBook {
+    background-color: #A2C7BE;
+    color: white;
+}
+
+.dashboard-container .action-bar #createBook:hover {
+    background-color: #91B6AD;
 }
 
 .logout-button {
-    background-color: #E8D0C3;
+    background-color: transparent;
     color: #4A4A4A;
     text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    transition: background-color 0.3s, color 0.3s;
+    border: 1px solid #4A4A4A;
+}
+
+.logout-button:hover {
+    background-color: #4A4A4A;
+    color: white;
 }
