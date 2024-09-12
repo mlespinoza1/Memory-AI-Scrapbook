@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <div class="login-container">
+    <div class="container">
         <h2>Welcome to Memory Nest</h2>
         <p class="subheading">Log in to your account</p>
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -18,7 +18,7 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <form id="loginForm" class="login-form" method="POST">
+        <form id="loginForm" class="form" method="POST">
             <div class="input-group">
                 <input type="email" id="email" name="email" placeholder="Email" required>
             </div>
@@ -28,11 +28,11 @@
                     <i class="fas fa-eye-slash"></i>
                 </button>
             </div>
-            <div class="remember-me">
+            <div class="checkbox-group">
                 <input type="checkbox" id="rememberMe" name="remember">
                 <label for="rememberMe">Remember me</label>
             </div>
-            <button type="submit" class="login-button">Login</button>
+            <button type="submit" class="button">Login</button>
         </form>
         <div class="separator">
             <hr>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <div class="login-container">
+    <div class="container">
         <h2>Create Your Memory Nest</h2>
         <p class="subheading">Start capturing and organizing your memories today</p>
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -18,7 +18,7 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <form id="signupForm" class="login-form" method="POST">
+        <form id="signupForm" class="form" method="POST">
             <div class="input-group">
                 <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
             </div>
@@ -35,29 +35,7 @@
                 <h3>Terms and Conditions</h3>
                 <div class="terms-iframe">
                     <div class="terms-content" id="termsContent">
-                        <h4>1. Acceptance of Terms</h4>
-                        <p>By accessing and using the Memory App, you agree to be bound by these Terms and Conditions.</p>
-                        
-                        <h4>2. User Accounts</h4>
-                        <p>You are responsible for maintaining the confidentiality of your account and password.</p>
-                        
-                        <h4>3. Privacy Policy</h4>
-                        <p>Your use of the Memory App is also governed by our Privacy Policy.</p>
-                        
-                        <h4>4. Content</h4>
-                        <p>You retain all rights to the content you upload to the Memory App.</p>
-                        
-                        <h4>5. Prohibited Activities</h4>
-                        <p>You agree not to engage in any illegal or unauthorized use of the Memory App.</p>
-                        
-                        <h4>6. Termination</h4>
-                        <p>We reserve the right to terminate or suspend your account at our sole discretion.</p>
-                        
-                        <h4>7. Changes to Terms</h4>
-                        <p>We reserve the right to modify these Terms at any time.</p>
-                        
-                        <h4>8. Contact Information</h4>
-                        <p>For any questions about these Terms, please contact us at support@memoryapp.com.</p>
+                        <!-- Terms and conditions content -->
                     </div>
                 </div>
                 <div class="checkbox-group">
@@ -65,9 +43,9 @@
                     <label for="acceptTerms">I have read and accept the terms and conditions</label>
                 </div>
             </div>
-            <button type="submit" id="createNestBtn" class="login-button" disabled>Sign Up</button>
+            <button type="submit" id="createNestBtn" class="button" disabled>Sign Up</button>
         </form>
-        <div class="signup-link">
+        <div class="login-link">
             Already have an account? <a href="{{ url_for('login') }}">Log in</a>
         </div>
     </div>
