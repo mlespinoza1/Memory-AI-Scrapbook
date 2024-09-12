@@ -5,14 +5,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Login container */
+/* Login and Signup container */
 .login-container {
     max-width: 400px;
-    width: 90%;
+    width: 100%;
     padding: 40px;
     background-color: white;
     border-radius: 10px;
@@ -22,11 +24,18 @@ body {
 h2 {
     text-align: center;
     color: #4A4A4A;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 24px;
 }
 
-/* Input fields and login button */
+.subheading {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+/* Input fields and buttons */
 .input-group {
     position: relative;
     margin-bottom: 20px;
@@ -76,6 +85,43 @@ h2 {
 
 .login-button:hover {
     background-color: #8fb3a9;
+}
+
+/* Terms and Conditions */
+.terms-container {
+    margin-bottom: 20px;
+}
+
+.terms-container h3 {
+    color: #4A4A4A;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.terms-iframe {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.terms-content {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 10px;
+    font-size: 14px;
+    color: #4A4A4A;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
 }
 
 /* Separator */
@@ -183,6 +229,3 @@ h2 {
     margin-bottom: 20px;
     text-align: center;
 }
-
-/* Existing styles for sign-up page */
-/* ... (keep the existing styles for the sign-up page) ... */
