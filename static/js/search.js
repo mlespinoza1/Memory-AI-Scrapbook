@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
+    const searchResults = document.querySelector('.dashboard__search-results');
 
     searchInput.addEventListener('focus', function() {
         this.placeholder = 'Type to search...';
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.length > 0) {
                     data.forEach(item => {
                         const div = document.createElement('div');
-                        div.classList.add('search-result-item');
+                        div.classList.add('dashboard__search-result-item');
                         div.textContent = `${item.title} - ${item.date}`;
                         div.addEventListener('click', () => {
                             // Navigate to memory detail page or perform desired action

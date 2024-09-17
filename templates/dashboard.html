@@ -8,32 +8,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <header>
-            <h1>My Memory Nest</h1>
-            <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    <div class="dashboard">
+        <header class="dashboard__header">
+            <h1 class="dashboard__title">My Memory Nest</h1>
+            <a href="{{ url_for('logout') }}" class="dashboard__logout-button">Logout</a>
         </header>
-        <div class="action-bar">
-            <div class="button-container">
-                <button id="createMemory" class="action-button">Create Memory</button>
-                <button id="createBook" class="action-button">Create Book</button>
+
+        <div class="dashboard__action-bar">
+            <div class="dashboard__button-container">
+                <button class="dashboard__action-button">Create Memory</button>
+                <button class="dashboard__action-button">Create Book</button>
             </div>
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search..." class="search-input-small">
-                <div id="search-results" class="search-results"></div>
+            <div class="dashboard__search-container">
+                <input type="text" id="search-input" placeholder="Search..." class="dashboard__search-input">
+                <div id="search-results" class="dashboard__search-results"></div>
             </div>
         </div>
-        <main>
-            <section class="memory-grid" id="memoryGrid">
-                <!-- Memory cards will be dynamically added here -->
-            </section>
+
+        <main class="dashboard__main">
+            <div id="memoryGrid" class="dashboard__memory-grid">
+                <!-- Memory items will be populated here -->
+            </div>
         </main>
-        <nav class="bottom-toolbar">
-            <a href="#" class="toolbar-icon"><i class="fas fa-home"></i></a>
-            <a href="#" class="toolbar-icon"><i class="fas fa-inbox"></i></a>
-            <a href="#" class="toolbar-icon"><i class="fas fa-cog"></i></a>
+
+        <nav class="dashboard__toolbar">
+            <a href="#" class="dashboard__toolbar-icon"><i class="fas fa-home"></i></a>
+            <a href="#" class="dashboard__toolbar-icon"><i class="fas fa-inbox"></i></a>
+            <a href="#" class="dashboard__toolbar-icon"><i class="fas fa-cog"></i></a>
         </nav>
     </div>
+
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
     <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 </body>
