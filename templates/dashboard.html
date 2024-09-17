@@ -19,8 +19,10 @@
                 <button id="createBook" class="button action-button">Create Book</button>
             </div>
             <div class="search-container">
-                <input type="text" id="searchBox" class="search-input" placeholder="Find your memories">
-                <i class="fas fa-search search-icon"></i>
+                <form action="{{ url_for('search') }}" method="GET">
+                    <input type="text" name="query" placeholder="Search memories..." required>
+                    <button type="submit">Search</button>
+                </form>
             </div>
         </div>
         <main>

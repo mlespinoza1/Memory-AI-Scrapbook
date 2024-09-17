@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="search-results-container">
+    <h2>Search Results for "{{ query }}"</h2>
+    {% if results %}
+        <ul class="search-results-list">
+        {% for result in results %}
+            <li class="search-result-item">
+                <h3>{{ result.title }}</h3>
+                <p>Date: {{ result.date }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+    <a href="{{ url_for('dashboard') }}" class="back-button">Back to Dashboard</a>
+</div>
+{% endblock %}
