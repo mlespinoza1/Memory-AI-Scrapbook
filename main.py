@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from urllib.parse import urlparse
 
@@ -80,6 +80,19 @@ def search():
     ]
     results = [memory for memory in memories if query.lower() in memory['title'].lower()]
     return render_template('search_results.html', query=query, results=results)
+
+@app.route('/api/search')
+def api_search():
+    query = request.args.get('query', '').lower()
+    # Mock memory data for demonstration
+    memories = [
+        {"id": 1, "title": "Summer Vacation", "date": "2023-07-15"},
+        {"id": 2, "title": "Family Reunion", "date": "2023-08-05"},
+        {"id": 3, "title": "Graduation Day", "date": "2023-06-10"},
+        {"id": 4, "title": "First Day at Work", "date": "2023-09-01"},
+    ]
+    results = [memory for memory in memories if query in memory['title'].lower()]
+    return jsonify(results)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

@@ -15,14 +15,12 @@
         </header>
         <div class="action-bar">
             <div class="button-container">
-                <button id="createMemory" class="button action-button">Create Memory</button>
-                <button id="createBook" class="button action-button">Create Book</button>
+                <button id="createMemory" class="action-button">Create Memory</button>
+                <button id="createBook" class="action-button">Create Book</button>
             </div>
             <div class="search-container">
-                <form action="{{ url_for('search') }}" method="GET">
-                    <input type="text" name="query" placeholder="Search memories..." required>
-                    <button type="submit">Search</button>
-                </form>
+                <input type="text" id="search-input" placeholder="Search..." class="search-input-small">
+                <div id="search-results" class="search-results"></div>
             </div>
         </div>
         <main>
@@ -37,5 +35,6 @@
         </nav>
     </div>
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 </body>
 </html>
