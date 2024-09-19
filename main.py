@@ -61,20 +61,24 @@ def token_required(f):
 def index():
     return redirect(url_for('dashboard'))
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = next((user for user in users.values() if user.email == username), None)
+        if user and bcrypt.check_password_hash(user.password, password):
+            access_token = create_access_token(identity=user.id)
+            return redirect(url_for('dashboard'))
+        else:
+            flash('Invalid username or password', 'error')
+    return render_template('login.html')
+
 @app.route('/dashboard')
 @token_required
 def dashboard():
+    # Add any necessary data fetching or processing here
     return render_template('dashboard.html', memories=memories)
-
-@app.route('/login', methods=['POST'])
-def login():
-    email = request.json.get('email', None)
-    password = request.json.get('password', None)
-    user = next((user for user in users.values() if user.email == email), None)
-    if user and bcrypt.check_password_hash(user.password, password):
-        access_token = create_access_token(identity=user.id)
-        return jsonify(access_token=access_token), 200
-    return jsonify({"msg": "Bad username or password"}), 401
 
 @app.route('/logout')
 def logout():
