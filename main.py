@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 from urllib.parse import urlparse
 
@@ -93,6 +93,21 @@ def api_search():
     ]
     results = [memory for memory in memories if query in memory['title'].lower()]
     return jsonify(results)
+
+@app.route('/memory/<int:memory_id>')
+def memory_detail(memory_id):
+    # Mock memory data for demonstration
+    memories = [
+        {"id": 1, "title": "Summer Vacation", "date": "2023-07-15", "description": "A wonderful trip to the beach"},
+        {"id": 2, "title": "Family Reunion", "date": "2023-08-05", "description": "Great time with extended family"},
+        {"id": 3, "title": "Graduation Day", "date": "2023-06-10", "description": "Proud moment receiving my diploma"},
+        {"id": 4, "title": "First Day at Work", "date": "2023-09-01", "description": "Exciting start to my career"},
+    ]
+    memory = next((m for m in memories if m['id'] == memory_id), None)
+    if memory:
+        return render_template('memory_detail.html', memory=memory)
+    else:
+        abort(404)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

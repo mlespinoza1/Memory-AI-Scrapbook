@@ -36,13 +36,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <p>${item.date}</p>
                             `;
                             li.addEventListener('click', () => {
-                                console.log('Clicked:', item);
-                                // TODO: Implement navigation to memory detail page
+                                // Navigate to memory detail page
+                                window.location.href = `/memory/${item.id}`;
                             });
                             li.addEventListener('keypress', (e) => {
                                 if (e.key === 'Enter') {
-                                    console.log('Clicked:', item);
-                                    // TODO: Implement navigation to memory detail page
+                                    window.location.href = `/memory/${item.id}`;
                                 }
                             });
                             li.setAttribute('tabindex', '0');
