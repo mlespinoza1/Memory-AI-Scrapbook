@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-input');
-    const searchResults = document.querySelector('.dashboard__search-results');
+    const searchResults = document.getElementById('search-results');
 
     if (searchInput && searchResults) {
         searchInput.addEventListener('focus', function() {
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         searchInput.addEventListener('blur', function() {
-            this.placeholder = 'Search...';
+            this.placeholder = 'Search memories...';
             setTimeout(() => {
                 searchResults.style.display = 'none';
             }, 200);

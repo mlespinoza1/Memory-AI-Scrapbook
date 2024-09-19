@@ -20,12 +20,9 @@
                 <button class="dashboard__action-button" aria-label="Create Memory">Create Memory</button>
                 <button class="dashboard__action-button" aria-label="Create Book">Create Book</button>
             </div>
-            <div class="dashboard__search-container">
-                <form action="{{ url_for('search') }}" method="GET">
-                    <label for="search-input" class="visually-hidden">Search memories</label>
-                    <input type="text" id="search-input" name="query" placeholder="Search memories..." required class="dashboard__search-input" aria-label="Search memories">
-                    <button type="submit" class="dashboard__search-button" aria-label="Submit search">Search</button>
-                </form>
+            <div class='dashboard__search-container'>
+                <input type='text' id='search-input' class='dashboard__search-input' placeholder='Search memories...'>
+                <div id='search-results' class='dashboard__search-results'></div>
             </div>
         </nav>
 
