@@ -8,7 +8,6 @@ from urllib.parse import urlparse
 from flask_bcrypt import Bcrypt
 from flask_session import Session
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
-from functools import wraps
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'  # Change this to a random secret key
@@ -41,44 +40,24 @@ class User:
         self.email = email
         self.password = password
 
-def token_required(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = request.headers.get('Authorization')
-        if not token:
-            return jsonify({"msg": "Missing Authorization Header"}), 401
-        try:
-            token = token.split()[1]  # Remove 'Bearer ' prefix
-            current_user = get_jwt_identity()
-            if not current_user:
-                return jsonify({"msg": "Invalid or expired token"}), 401
-        except Exception as e:
-            return jsonify({"msg": "Invalid token format"}), 401
-        return f(*args, **kwargs)
-    return decorated
-
 @app.route('/')
 def index():
     return redirect(url_for('dashboard'))
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        user = next((user for user in users.values() if user.email == username), None)
-        if user and bcrypt.check_password_hash(user.password, password):
-            access_token = create_access_token(identity=user.id)
-            return redirect(url_for('dashboard'))
-        else:
-            flash('Invalid username or password', 'error')
-    return render_template('login.html')
-
 @app.route('/dashboard')
-@token_required
+@jwt_required()
 def dashboard():
-    # Add any necessary data fetching or processing here
     return render_template('dashboard.html', memories=memories)
+
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+    user = next((user for user in users.values() if user.email == email), None)
+    if user and bcrypt.check_password_hash(user.password, password):
+        access_token = create_access_token(identity=user.id)
+        return jsonify(access_token=access_token), 200
+    return jsonify({"msg": "Bad username or password"}), 401
 
 @app.route('/logout')
 def logout():
@@ -102,7 +81,7 @@ def signup():
     return jsonify({"msg": "User created successfully"}), 201
 
 @app.route('/memories', methods=['GET', 'POST'])
-@token_required
+@jwt_required()
 def handle_memories():
     if request.method == 'GET':
         return jsonify(memories)
@@ -121,7 +100,7 @@ def handle_memories():
         return jsonify({"errors": form.errors}), 400
 
 @app.route('/memories/<int:memory_id>', methods=['GET', 'PUT', 'DELETE'])
-@token_required
+@jwt_required()
 def handle_memory(memory_id):
     memory = next((m for m in memories if m['id'] == memory_id), None)
     if not memory:
@@ -144,21 +123,21 @@ def handle_memory(memory_id):
         return '', 204
 
 @app.route('/search')
-@token_required
+@jwt_required()
 def search():
     query = request.args.get('query', '')
     results = [memory for memory in memories if query.lower() in memory['title'].lower()]
     return render_template('search_results.html', query=query, results=results)
 
 @app.route('/api/search')
-@token_required
+@jwt_required()
 def api_search():
     query = request.args.get('query', '').lower()
     results = [memory for memory in memories if query in memory['title'].lower()]
     return jsonify(results)
 
 @app.route('/protected', methods=['GET'])
-@token_required
+@jwt_required()
 def protected():
     current_user_id = get_jwt_identity()
     return jsonify(logged_in_as=current_user_id), 200

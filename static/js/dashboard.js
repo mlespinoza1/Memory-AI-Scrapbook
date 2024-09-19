@@ -1,13 +1,6 @@
 // Constants
 const DEBOUNCE_DELAY = 300;
 
-// Check for token and redirect if not present
-const token = localStorage.getItem('access_token');
-if (!token) {
-    console.error('No access token found');
-    window.location.href = '/login';
-}
-
 // Utility functions
 const debounce = (func, delay) => {
     let timeout;
@@ -91,25 +84,18 @@ const attachEventListeners = () => {
 };
 
 const performSearch = (query) => {
+    const token = localStorage.getItem('access_token');
     fetch(`/api/search?query=${encodeURIComponent(query)}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             displaySearchResults(data);
         })
         .catch(error => {
             console.error('Error fetching search results:', error);
-            if (error.message.includes('401')) {
-                window.location.href = '/login';
-            }
         });
 };
 
@@ -150,17 +136,13 @@ const initDashboard = () => {
         console.log('Initializing dashboard');
         
         // Fetch memories from the server
+        const token = localStorage.getItem('access_token');
         fetch('/memories', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 renderMemories(data);
                 attachEventListeners();
@@ -168,10 +150,6 @@ const initDashboard = () => {
             })
             .catch(error => {
                 console.error('Error fetching memories:', error);
-                if (error.message.includes('401')) {
-                    // Redirect to login page if unauthorized
-                    window.location.href = '/login';
-                }
             });
     } catch (error) {
         console.error('Error initializing dashboard:', error);
