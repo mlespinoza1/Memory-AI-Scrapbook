@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="memory-detail-container">
-    <h1>{{ memory.title }}</h1>
-    <p class="memory-date">{{ memory.date }}</p>
-    <p class="memory-description">{{ memory.description }}</p>
-    <a href="{{ url_for('dashboard') }}" class="back-button">Back to Dashboard</a>
-</div>
-{% endblock %}

@@ -1,75 +1,18 @@
-/* Existing styles... */
+/* Import base styles */
+@import 'base.css';
 
-/* Search styles */
-.search-container {
-    margin: 20px 0;
-    text-align: center;
-}
+/* Import component styles */
+@import 'components/buttons.css';
+@import 'components/forms.css';
+@import 'components/cards.css';
 
-.search-container input[type="text"] {
-    padding: 10px;
-    width: 70%;
-    max-width: 300px;
-    border: 1px solid #ddd;
-    border-radius: 20px 0 0 20px;
-    outline: none;
-}
+/* Import layout styles */
+@import 'layouts/header.css';
+@import 'layouts/footer.css';
 
-.search-container button {
-    padding: 10px 20px;
-    background-color: #A2C7BE;
-    color: white;
-    border: none;
-    border-radius: 0 20px 20px 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+/* Import page-specific styles */
+@import 'pages/login.css';
+@import 'pages/signup.css';
+@import 'pages/dashboard.css';
 
-.search-container button:hover {
-    background-color: #8EB5AB;
-}
-
-.search-results-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.search-results-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.search-result-item {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-}
-
-.search-result-item h3 {
-    margin: 0 0 10px 0;
-    color: #4A4A4A;
-}
-
-.back-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #E8D0C3;
-    color: #4A4A4A;
-    text-decoration: none;
-    border-radius: 20px;
-    transition: background-color 0.3s;
-}
-
-.back-button:hover {
-    background-color: #D3A284;
-}
-
-@media (max-width: 600px) {
-    .search-container input[type="text"] {
-        width: 60%;
-    }
-}
+/* Any additional custom styles can be added here */

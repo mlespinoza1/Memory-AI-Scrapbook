@@ -9,10 +9,6 @@ readme = "README.md"
 python = "^3.11"
 flask = "^3.0.3"
 flask-login = "^0.6.3"
-flask-wtf = "^1.2.1"
-flask-bcrypt = "^1.0.1"
-flask-session = "^0.8.0"
-flask-jwt-extended = "^4.6.0"
 
 
 [build-system]
