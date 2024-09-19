@@ -17,6 +17,8 @@
             <div class="button-container">
                 <button id="createMemory" class="button action-button">Create Memory</button>
                 <button id="createBook" class="button action-button">Create Book</button>
+                <input type="file" id="audioFileInput" accept="audio/*" style="display: none;">
+                <button id="uploadAudio" class="button action-button">Upload Audio</button>
             </div>
             <div class="search-container">
                 <input type="text" id="searchBox" class="search-input">
@@ -35,5 +37,6 @@
         </nav>
     </div>
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/audio_upload.js') }}"></script>
 </body>
 </html>

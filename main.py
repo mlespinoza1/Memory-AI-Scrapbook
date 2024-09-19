@@ -1,8 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'  # Change this to a random secret key
+app.config['UPLOAD_FOLDER'] = 'uploads'  # Create this folder in your project directory
+
+# Ensure the upload folder exists
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # This should be replaced with a database in a real application
 users = {}
@@ -66,6 +72,28 @@ def signup():
             flash("Welcome to Memory Nest! Your account has been created. Let's start preserving your memories together.", 'success')
             return redirect(url_for('login'))
     return render_template('signup.html')
+
+@app.route('/upload_audio', methods=['POST'])
+def upload_audio():
+    if 'audio' not in request.files:
+        return jsonify({'success': False, 'message': 'No audio file part'}), 400
+    
+    file = request.files['audio']
+    
+    if file.filename == '':
+        return jsonify({'success': False, 'message': 'No selected file'}), 400
+    
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return jsonify({'success': True, 'message': 'File uploaded successfully'})
+    
+    return jsonify({'success': False, 'message': 'Invalid file type'}), 400
+
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = {'mp3', 'wav', 'ogg'}
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
