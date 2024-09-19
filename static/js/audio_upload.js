@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const uploadAudioBtn = document.getElementById('uploadAudio');
     const audioFileInput = document.getElementById('audioFileInput');
-    const uploadAudioButton = document.getElementById('uploadAudio');
 
-    uploadAudioButton.addEventListener('click', function() {
+    uploadAudioBtn.addEventListener('click', function() {
         audioFileInput.click();
     });
 
@@ -24,15 +24,15 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Audio file uploaded successfully!');
-                // You can add more functionality here, like updating the UI or refreshing the memory grid
+                alert('Audio uploaded and transcribed successfully. Transcription: ' + data.transcription);
+                // Here you can add code to display the transcription on the page or create a new memory card
             } else {
-                alert('Failed to upload audio file. Please try again.');
+                alert('Error: ' + data.message);
             }
         })
         .catch(error => {
-            console.error('Error uploading audio file:', error);
-            alert('An error occurred while uploading the audio file. Please try again.');
+            console.error('Error:', error);
+            alert('An error occurred while uploading the audio file.');
         });
     }
 });
