@@ -84,7 +84,12 @@ const attachEventListeners = () => {
 };
 
 const performSearch = (query) => {
-    fetch(`/api/search?query=${encodeURIComponent(query)}`)
+    const token = localStorage.getItem('access_token');
+    fetch(`/api/search?query=${encodeURIComponent(query)}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
         .then(response => response.json())
         .then(data => {
             displaySearchResults(data);
@@ -130,18 +135,22 @@ const initDashboard = () => {
     try {
         console.log('Initializing dashboard');
         
-        // Sample data (replace with actual data fetching)
-        const memories = [
-            { title: "Summer Vacation", date: "July 15, 2023", image: "https://placehold.co/600x400/A2C7BE/ffffff?text=Summer+Vacation" },
-            { title: "Family Reunion", date: "August 5, 2023", image: "https://placehold.co/600x400/A2C7BE/ffffff?text=Family+Reunion" },
-            { title: "Graduation Day", date: "June 10, 2023", image: "https://placehold.co/600x400/A2C7BE/ffffff?text=Graduation+Day" },
-            { title: "First Day at Work", date: "September 1, 2023", image: "https://placehold.co/600x400/A2C7BE/ffffff?text=First+Day+at+Work" }
-        ];
-
-        renderMemories(memories);
-        attachEventListeners();
-
-        console.log('Dashboard initialized successfully');
+        // Fetch memories from the server
+        const token = localStorage.getItem('access_token');
+        fetch('/memories', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                renderMemories(data);
+                attachEventListeners();
+                console.log('Dashboard initialized successfully');
+            })
+            .catch(error => {
+                console.error('Error fetching memories:', error);
+            });
     } catch (error) {
         console.error('Error initializing dashboard:', error);
     }

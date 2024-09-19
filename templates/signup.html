@@ -12,14 +12,8 @@
         <div class="container">
             <h2>Create Your Memory Nest</h2>
             <p class="subheading">Start capturing and organizing your memories today</p>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="flash-{{ category }}">{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            <form id="signupForm" class="signup-form" method="POST">
+            <div id="flash-messages"></div>
+            <form id="signupForm" class="signup-form">
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
@@ -44,17 +38,77 @@
                         <p>Memory Nest is designed to help you capture and organize your memories. You retain all rights to the content you upload to the platform.</p>
                     </div>
                     <div class="checkbox-group">
-                        <input type="checkbox" id="acceptTerms" disabled>
+                        <input type="checkbox" id="acceptTerms" required>
                         <label for="acceptTerms">I have read and accept the terms and conditions</label>
                     </div>
                 </div>
-                <button type="submit" id="createNestBtn" class="button" disabled>Sign Up</button>
+                <button type="submit" id="createNestBtn" class="button">Sign Up</button>
             </form>
             <div class="login-link">
                 Already have an account? <a href="{{ url_for('login') }}">Log in</a>
             </div>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const acceptTerms = document.getElementById('acceptTerms').checked;
+
+            if (!acceptTerms) {
+                const flashMessages = document.getElementById('flash-messages');
+                flashMessages.innerHTML = '<div class="flash-error">Please accept the terms and conditions</div>';
+                return;
+            }
+
+            axios.post('/signup', {
+                first_name: firstName,
+                email: email,
+                password: password
+            })
+            .then(function (response) {
+                const flashMessages = document.getElementById('flash-messages');
+                flashMessages.innerHTML = '<div class="flash-success">' + response.data.msg + '</div>';
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 2000);
+            })
+            .catch(function (error) {
+                const flashMessages = document.getElementById('flash-messages');
+                flashMessages.innerHTML = '<div class="flash-error">' + error.response.data.msg + '</div>';
+            });
+        });
+
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        });
+
+        const termsScroll = document.getElementById('termsScroll');
+        const acceptTerms = document.getElementById('acceptTerms');
+        const createNestBtn = document.getElementById('createNestBtn');
+
+        termsScroll.addEventListener('scroll', function() {
+            if (termsScroll.scrollHeight - termsScroll.scrollTop === termsScroll.clientHeight) {
+                acceptTerms.disabled = false;
+            }
+        });
+
+        acceptTerms.addEventListener('change', function() {
+            createNestBtn.disabled = !this.checked;
+        });
+    </script>
 </body>
 </html>

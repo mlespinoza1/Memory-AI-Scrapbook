@@ -21,8 +21,10 @@
                 <button class="dashboard__action-button" aria-label="Create Book">Create Book</button>
             </div>
             <div class="dashboard__search-container">
-                <input type="text" id="search-input" class="dashboard__search-input" placeholder="Search memories..." aria-label="Search memories">
-                <div id="search-results" class="dashboard__search-results" role="listbox" aria-label="Search results"></div>
+                <form action="{{ url_for('search') }}" method="GET">
+                    <input type="text" name="query" placeholder="Search memories..." required>
+                    <button type="submit">Search</button>
+                </form>
             </div>
         </nav>
 
@@ -34,7 +36,6 @@
                 </div>
             </section>
             <aside class="dashboard__sidebar">
-                <!-- Additional content or widgets can go here -->
                 <h3>Quick Stats</h3>
                 <ul>
                     <li>Total Memories: <span id="totalMemories">0</span></li>
@@ -53,6 +54,5 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 </body>
 </html>

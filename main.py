@@ -5,10 +5,20 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.exceptions import HTTPException
 from forms import MemoryForm, LoginForm, SignupForm
 from urllib.parse import urlparse
+from flask_bcrypt import Bcrypt
+from flask_session import Session
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'  # Change this to a random secret key
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['JWT_SECRET_KEY'] = 'your-jwt-secret-key'  # Change this to a random secret key
 csrf = CSRFProtect(app)
+bcrypt = Bcrypt(app)
+Session(app)
+jwt = JWTManager(app)
 
 # Configure logging
 logging.basicConfig(filename='app.log', level=logging.INFO)
@@ -35,50 +45,43 @@ def index():
     return redirect(url_for('dashboard'))
 
 @app.route('/dashboard')
+@jwt_required()
 def dashboard():
     return render_template('dashboard.html', memories=memories)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST'])
 def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        email = form.email.data
-        password = form.password.data
-        remember = form.remember.data
-
-        user = next((user for user in users.values() if user.email == email), None)
-        if user and check_password_hash(user.password, password):
-            logging.info(f"User logged in: {email}")
-            return redirect(url_for('dashboard'))
-        else:
-            flash('Invalid email or password', 'error')
-    return render_template('login.html', form=form)
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+    user = next((user for user in users.values() if user.email == email), None)
+    if user and bcrypt.check_password_hash(user.password, password):
+        access_token = create_access_token(identity=user.id)
+        return jsonify(access_token=access_token), 200
+    return jsonify({"msg": "Bad username or password"}), 401
 
 @app.route('/logout')
 def logout():
     logging.info("User logged out")
     return redirect(url_for('login'))
 
-@app.route("/signup", methods=['GET', 'POST'])
+@app.route("/signup", methods=['POST'])
 def signup():
-    form = SignupForm()
-    if form.validate_on_submit():
-        first_name = form.first_name.data
-        email = form.email.data
-        password = form.password.data
-        
-        if email in [user.email for user in users.values()]:
-            flash('Email already exists', 'error')
-        else:
-            user_id = str(len(users) + 1)
-            new_user = User(user_id, first_name, email, generate_password_hash(password))
-            users[user_id] = new_user
-            logging.info(f"New user created: {email}")
-            flash("Welcome to Memory Nest! Your account has been created.", 'success')
-            return redirect(url_for('login'))
-    return render_template('signup.html', form=form)
+    first_name = request.json.get('first_name', None)
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+    
+    if email in [user.email for user in users.values()]:
+        return jsonify({"msg": "Email already exists"}), 400
+    
+    user_id = str(len(users) + 1)
+    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+    new_user = User(user_id, first_name, email, hashed_password)
+    users[user_id] = new_user
+    logging.info(f"New user created: {email}")
+    return jsonify({"msg": "User created successfully"}), 201
 
 @app.route('/memories', methods=['GET', 'POST'])
+@jwt_required()
 def handle_memories():
     if request.method == 'GET':
         return jsonify(memories)
@@ -97,6 +100,7 @@ def handle_memories():
         return jsonify({"errors": form.errors}), 400
 
 @app.route('/memories/<int:memory_id>', methods=['GET', 'PUT', 'DELETE'])
+@jwt_required()
 def handle_memory(memory_id):
     memory = next((m for m in memories if m['id'] == memory_id), None)
     if not memory:
@@ -119,16 +123,24 @@ def handle_memory(memory_id):
         return '', 204
 
 @app.route('/search')
+@jwt_required()
 def search():
     query = request.args.get('query', '')
     results = [memory for memory in memories if query.lower() in memory['title'].lower()]
     return render_template('search_results.html', query=query, results=results)
 
 @app.route('/api/search')
+@jwt_required()
 def api_search():
     query = request.args.get('query', '').lower()
     results = [memory for memory in memories if query in memory['title'].lower()]
     return jsonify(results)
+
+@app.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    current_user_id = get_jwt_identity()
+    return jsonify(logged_in_as=current_user_id), 200
 
 @app.errorhandler(404)
 def not_found_error(error):
