@@ -1,6 +1,13 @@
 // Constants
 const DEBOUNCE_DELAY = 300;
 
+// Check for token and redirect if not present
+const token = localStorage.getItem('access_token');
+if (!token) {
+    console.error('No access token found');
+    window.location.href = '/login';
+}
+
 // Utility functions
 const debounce = (func, delay) => {
     let timeout;
@@ -84,12 +91,6 @@ const attachEventListeners = () => {
 };
 
 const performSearch = (query) => {
-    const token = localStorage.getItem('access_token');
-    if (!token) {
-        console.error('No access token found');
-        window.location.href = '/login';
-        return;
-    }
     fetch(`/api/search?query=${encodeURIComponent(query)}`, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -145,13 +146,6 @@ const displaySearchResults = (results) => {
 
 // Main function
 const initDashboard = () => {
-    const token = localStorage.getItem('access_token');
-    if (!token) {
-        console.error('No access token found');
-        window.location.href = '/login';
-        return;
-    }
-
     try {
         console.log('Initializing dashboard');
         
