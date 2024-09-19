@@ -26,18 +26,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     searchResults.innerHTML = '';
                     if (data.length > 0) {
+                        const ul = document.createElement('ul');
+                        ul.className = 'dashboard__search-results-list';
                         data.forEach(item => {
-                            const div = document.createElement('div');
-                            div.classList.add('dashboard__search-result-item');
-                            div.textContent = `${item.title} - ${item.date}`;
-                            div.addEventListener('click', () => {
+                            const li = document.createElement('li');
+                            li.className = 'dashboard__search-result-item';
+                            li.innerHTML = `
+                                <h3>${item.title}</h3>
+                                <p>${item.date}</p>
+                            `;
+                            li.addEventListener('click', () => {
                                 console.log('Clicked:', item);
+                                // TODO: Implement navigation to memory detail page
                             });
-                            searchResults.appendChild(div);
+                            li.addEventListener('keypress', (e) => {
+                                if (e.key === 'Enter') {
+                                    console.log('Clicked:', item);
+                                    // TODO: Implement navigation to memory detail page
+                                }
+                            });
+                            li.setAttribute('tabindex', '0');
+                            ul.appendChild(li);
                         });
+                        searchResults.appendChild(ul);
                         searchResults.style.display = 'block';
                     } else {
-                        searchResults.style.display = 'none';
+                        const noResults = document.createElement('p');
+                        noResults.className = 'dashboard__search-no-results';
+                        noResults.textContent = 'No results found';
+                        searchResults.appendChild(noResults);
+                        searchResults.style.display = 'block';
                     }
                 })
                 .catch(error => {
