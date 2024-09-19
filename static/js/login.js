@@ -26,7 +26,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const rememberMe = document.getElementById('rememberMe').checked;
 
         // Submit the form
-        form.submit();
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.access_token) {
+                localStorage.setItem('access_token', data.access_token);
+                window.location.href = '/dashboard';
+            } else {
+                throw new Error(data.msg || 'Login failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert(error.message);
+        });
     });
 
     // Social login buttons (for demonstration)
@@ -46,6 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sign up link
     document.querySelector('.signup-link a').addEventListener('click', function(e) {
         e.preventDefault();
-        alert('Sign up page will be implemented in the future.');
+        window.location.href = '/signup';
     });
 });
