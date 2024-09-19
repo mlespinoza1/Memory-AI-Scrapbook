@@ -8,34 +8,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
     <div class="dashboard">
         <header class="dashboard__header">
             <h1 class="dashboard__title">My Memory Nest</h1>
-            <a href="{{ url_for('logout') }}" class="dashboard__logout-button">Logout</a>
+            <button class="dashboard__logout-button" onclick="location.href='{{ url_for('logout') }}'" aria-label="Logout">Logout</button>
         </header>
 
-        <div class="dashboard__action-bar">
+        <nav class="dashboard__action-bar" aria-label="Main actions">
             <div class="dashboard__button-container">
-                <button class="dashboard__action-button">Create Memory</button>
-                <button class="dashboard__action-button">Create Book</button>
+                <button class="dashboard__action-button" aria-label="Create Memory">Create Memory</button>
+                <button class="dashboard__action-button" aria-label="Create Book">Create Book</button>
             </div>
             <div class="dashboard__search-container">
-                <input type="text" id="search-input" placeholder="Search..." class="dashboard__search-input">
-                <div id="search-results" class="dashboard__search-results"></div>
+                <form action="{{ url_for('search') }}" method="GET">
+                    <label for="search-input" class="visually-hidden">Search memories</label>
+                    <input type="text" id="search-input" name="query" placeholder="Search memories..." required class="dashboard__search-input" aria-label="Search memories">
+                    <button type="submit" class="dashboard__search-button" aria-label="Submit search">Search</button>
+                </form>
             </div>
-        </div>
+        </nav>
 
-        <main class="dashboard__main">
-            <div id="memoryGrid" class="dashboard__memory-grid">
-                <!-- Memory items will be populated here -->
-            </div>
+        <main id="main-content" class="dashboard__main">
+            <section class="dashboard__memory-section">
+                <h2>Your Memories</h2>
+                <div id="memoryGrid" class="dashboard__memory-grid" role="grid" aria-label="Memory grid">
+                    <!-- Memory items will be populated here -->
+                </div>
+            </section>
+            <aside class="dashboard__sidebar">
+                <!-- Additional content or widgets can go here -->
+                <h3>Quick Stats</h3>
+                <ul>
+                    <li>Total Memories: <span id="totalMemories">0</span></li>
+                    <li>Books Created: <span id="booksCreated">0</span></li>
+                </ul>
+            </aside>
         </main>
 
-        <nav class="dashboard__toolbar">
-            <a href="#" class="dashboard__toolbar-icon"><i class="fas fa-home"></i></a>
-            <a href="#" class="dashboard__toolbar-icon"><i class="fas fa-inbox"></i></a>
-            <a href="#" class="dashboard__toolbar-icon"><i class="fas fa-cog"></i></a>
-        </nav>
+        <footer class="dashboard__footer">
+            <nav class="dashboard__toolbar" aria-label="Footer navigation">
+                <button class="dashboard__toolbar-icon" aria-label="Home"><i class="fas fa-home"></i></button>
+                <button class="dashboard__toolbar-icon" aria-label="Inbox"><i class="fas fa-inbox"></i></button>
+                <button class="dashboard__toolbar-icon" aria-label="Settings"><i class="fas fa-cog"></i></button>
+            </nav>
+        </footer>
     </div>
 
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
